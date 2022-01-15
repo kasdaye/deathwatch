@@ -1,0 +1,26 @@
+<form class="actor-sheet {{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+        <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="64" width="64" />
+        <h1 class="charname">
+            <input name="name" type="text" value="{{actor.name}}" placeholder="{{ localize 'Name' }}" />
+        </h1>
+    </header>
+
+    {{> "systems/deathwatch/templates/partials/characteristics-bar.hbs" actor=actor config=config}}
+
+    <div class="outer-content">
+        <nav class="tabs">
+            <a class="item" data-tab="marine-details">Details</a>
+            <a class="item active" data-tab="skills">Skills</a>
+        </nav>
+
+        <div class="content">
+            <div class="tab" data-tab="marine-details">
+                Foo
+            </div>
+            <div class="tab" data-tab="skills">
+                Bar
+            </div>
+        </div>
+    </div>
+</form>

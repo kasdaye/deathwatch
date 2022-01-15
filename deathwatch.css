@@ -1,0 +1,24 @@
+td.characteristic-name {
+    text-align: center;
+}
+
+input[type="number"].characteristic-box {
+    height: 50px;
+    font-size: 50px;
+    text-align: right;
+}
+
+input[type="number"].characteristic-bonus-box {
+    width: 25px;
+    text-align: left;
+}
+
+div.relative {
+    position: relative;
+  } 
+
+div.absolute {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+  }

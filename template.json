@@ -1,0 +1,82 @@
+{
+    "Actor": {
+        "types": [
+            "deathwatchMarine"
+        ],
+        "deathwatchMarine": {
+            "templates": [],
+            "marineDetails": {
+                "playerName": "",
+                "chapter": "",
+                "pastEvent": "",
+                "chapterDemeanour": "",
+                "personalDemeanour": "",
+                "specialty": "",
+                "rank": 1,
+                "powerArmourHistory": "",
+                "description": ""
+            },
+            "characteristics": {
+                "weaponSkill": {
+                    "value": 30
+                },
+                "ballisticSkill": {
+                    "value": 30
+                },
+                "strength": {
+                    "value": 30,
+                    "bonus": 3
+                },
+                "toughness": {
+                    "value": 30,
+                    "bonus": 3
+                },
+                "agility": {
+                    "value": 30
+                },
+                "intelligence": {
+                    "value": 30
+                },
+                "perception": {
+                    "value": 30
+                },
+                "willpower": {
+                    "value": 30
+                },
+                "fellowship": {
+                    "value": 30
+                }
+            },
+            "injury": {
+                "wounds": {
+                    "value": 0,
+                    "max": 0
+                },
+                "criticalDamage": {
+                    "value": 0
+                },
+                "fatigue": {
+                    "value": 0
+                }
+            }
+        }
+    },
+    "Item": {
+        "types": [
+            "weapon"
+        ],
+        "weapon": {
+            "class": "",
+            "damage": "",
+            "type": "",
+            "pen": 0,
+            "range": "",
+            "singleShotRateOfFire": "-",
+            "semiAutomaticRateOfFire": "-",
+            "fullAutomaticRateOfFire": "-",
+            "clip": "",
+            "reload": "",
+            "specialRules": ""
+        }
+    }
+}

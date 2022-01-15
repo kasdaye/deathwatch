@@ -1,0 +1,15 @@
+{
+    "deathwatch": {
+        "characteristics": {
+            "weaponSkill": "Weapon Skill",
+            "ballisticSkill": "Ballistic Skill",
+            "strength": "Strength",
+            "toughness": "Toughness",
+            "agility": "Agility",
+            "intelligence": "Intelligence",
+            "perception": "Perception",
+            "willpower": "Willpower",
+            "fellowship": "Fellowship"
+        }
+    }
+}
