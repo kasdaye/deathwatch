@@ -9,16 +9,21 @@ input[type="number"].characteristic-box {
 }
 
 input[type="number"].characteristic-bonus-box {
+    height: 25px;
     width: 25px;
-    text-align: left;
+    text-align: center;
 }
 
 div.relative {
     position: relative;
-  } 
+}
 
 div.absolute {
     position: absolute;
     top: 0px;
     left: 0px;
-  }
+}
+
+td.skill-box {
+    text-align: center;
+}

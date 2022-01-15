@@ -1,0 +1,13 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+        <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64" />
+        <h1><input name="name" type="text" value="{{item.name}}" placeholder="Name" /></h1>
+    </header>
+    <div class="skill-container">
+        <input name="data.characteristic" type="text" value="{{data.data.characteristic}}" data-dtype="String" />
+        <input name="data.isBasic" type="checkbox" {{checked data.data.isBasic}} />
+        <input name="data.isTrained" type="checkbox" {{checked data.data.isTrained}} />
+        <input name="data.hasPlus10Upgrade" type="checkbox" {{checked data.data.hasPlus10Upgrade}} />
+        <input name="data.hasPlus20Upgrade" type="checkbox" {{checked data.data.hasPlus20Upgrade}} />
+    </div>
+</form>

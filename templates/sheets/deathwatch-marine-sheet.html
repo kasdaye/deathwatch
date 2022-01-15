@@ -19,7 +19,33 @@
                 {{> "systems/deathwatch/templates/partials/marine-details.hbs" actor=actor}}
             </div>
             <div class="tab" data-tab="skills">
-                Bar
+                <section>
+                    <table>
+                        <tr class="skill-header-row">
+                            <th></th>
+                            <th class="skill-header-cell">
+                                Basic
+                            </th>
+                            <th class="skill-header-cell">
+                                Trained
+                            </th>
+                            <th class="skill-header-cell">
+                                +10%
+                            </th>
+                            <th class="skill-header-cell">
+                                +20%
+                            </th>
+                            <th>
+
+                            </th>
+                        </tr>
+                        {{#each actor.items as |item id|}}
+                        {{#ifeq item.type "skill"}}
+                        {{> "systems/deathwatch/templates/partials/marine-skills-editable.hbs" actor item=item}}
+                        {{/ifeq}}
+                        {{/each}}
+                    </table>
+                </section>
             </div>
         </div>
     </div>

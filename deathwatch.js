@@ -1,4 +1,5 @@
 import { deathwatch } from "./module/config.js";
+import SkillSheet from "./module/sheets/skill-sheet.js";
 import DeathwatchMarineSheet from "./module/sheets/deathwatch-marine-sheet.js";
 
 Hooks.once("init", function () {
@@ -6,17 +7,25 @@ Hooks.once("init", function () {
 
     CONFIG.deathwatch = deathwatch;
 
+    Items.unregisterSheet("core", ItemSheet);
+    Items.registerSheet("deathwatch", SkillSheet, { types: ["skill"], makeDefault: true });
+
     Actors.unregisterSheet("core", ActorSheet);
     Actors.registerSheet("deathwatch", DeathwatchMarineSheet, { types: ["deathwatchMarine"], makeDefault: true });
 
     preloadHandlebarsTemplates();
 
+    Handlebars.registerHelper('ifeq', function (a, b, options) {
+        if (a == b) { return options.fn(this); }
+        return options.inverse(this);
+    });
 });
 
 async function preloadHandlebarsTemplates() {
     const templatePaths = [
         "systems/deathwatch/templates/partials/marine-details.hbs",
-        "systems/deathwatch/templates/partials/characteristics-bar.hbs"
+        "systems/deathwatch/templates/partials/characteristics-bar.hbs",
+        "systems/deathwatch/templates/partials/marine-skills-editable.hbs"
     ];
 
     return loadTemplates(templatePaths);

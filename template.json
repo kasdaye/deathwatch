@@ -63,8 +63,16 @@
     },
     "Item": {
         "types": [
+            "skill",
             "weapon"
         ],
+        "skill": {
+            "characteristic": "S",
+            "isBasic": false,
+            "isTrained": false,
+            "hasPlus10Upgrade": false,
+            "hasPlus20Upgrade": false
+        },
         "weapon": {
             "class": "",
             "damage": "",

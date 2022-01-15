@@ -1,0 +1,24 @@
+<tr class="actor-item" data-item-id="{{item.id}}">
+    <td>
+        {{item.name}} ({{item.data.data.characteristic}})
+    </td>
+    <td class="skill-box">
+        <input class="checkbox-edit" type="checkbox" data-dtype="Boolean" data-field="data.isBasic" {{checked item.data.data.isBasic}} />
+    </td>
+    <td class="skill-box">
+        <input class="checkbox-edit" type="checkbox" data-dtype="Boolean" data-field="data.isTrained" {{checked item.data.data.isTrained}} />
+    </td>
+    <td class="skill-box">
+        <input class="checkbox-edit" type="checkbox" data-dtype="Boolean" data-field="data.hasPlus10Upgrade" {{checked item.data.data.hasPlus10Upgrade}} />
+    </td>
+    <td class="skill-box">
+        <input class="checkbox-edit" type="checkbox" data-dtype="Boolean" data-field="data.hasPlus20Upgrade" {{checked item.data.data.hasPlus20Upgrade}} />
+    </td>
+    <td>
+        <div class="editable-skill-container" data-item-id="{{id}}">
+            <a class="item-control roll-skill" title="Edit Skill"><i class="fas fa-dice"></i></a>
+            <a class="item-control item-edit" title="Edit Skill"><i class="fas fa-edit"></i></a>
+            <a class="item-control item-delete" title="Delete Skill"><i class="fas fa-trash"></i></a>
+        </div>
+    </td>
+</tr>
