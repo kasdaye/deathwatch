@@ -15,6 +15,7 @@ Hooks.once("init", function () {
 
 async function preloadHandlebarsTemplates() {
     const templatePaths = [
+        "systems/deathwatch/templates/partials/marine-details.hbs",
         "systems/deathwatch/templates/partials/characteristics-bar.hbs"
     ];
 

@@ -1,5 +1,16 @@
 {
     "deathwatch": {
+        "marineDetails": {
+            "playerName": "Player Name",
+            "chapter": "Chapter",
+            "pastEvent": "Past Event",
+            "chapterDemeanour": "Chapter Demeanour",
+            "personalDemeanour": "Personal Demeanour",
+            "specialty": "Specialty",
+            "rank": "Rank",
+            "powerArmourHistory": "Power Armour History",
+            "description": "Description"
+        },
         "characteristics": {
             "weaponSkill": "Weapon Skill",
             "ballisticSkill": "Ballistic Skill",
