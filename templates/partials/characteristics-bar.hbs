@@ -23,9 +23,15 @@
                         value="{{characteristic.value}}" data-dtype="Number" />
                     <div class="absolute">
                         {{#if characteristic.bonus}}
-                        <input class="characteristic-bonus-box" name="data.characteristics.{{type}}.bonus" type="number" value="{{characteristic.bonus}}"
-                            data-dtype="Number" />
+                        <input class="characteristic-bonus-box" name="data.characteristics.{{type}}.bonus" type="number"
+                            value="{{characteristic.bonus}}" data-dtype="Number" />
                         {{/if}}
+                    </div>
+                    <div class="characteristic-roll-container">
+                        <a class="roll-characteristic" title="Roll {{ localize name }}"
+                            data-action-value="{{characteristic.value}}" data-action-name="{{ localize name }}">
+                            <i class="fas fa-dice"></i>
+                        </a>
                     </div>
                 </div>
             </td>

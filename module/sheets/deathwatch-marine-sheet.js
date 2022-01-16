@@ -12,6 +12,7 @@ export default class DeathwatchMarineSheet extends ActorSheet {
     activateListeners(html) {
         if (this.actor.isOwner) {
             html.find(".checkbox-edit").change(this._onCheckboxEdit.bind(this));
+            html.find(".roll-characteristic").click(this._onCharacteristicRoll.bind(this))
             // html.find(".skill-roll").click(this._onSkillRoll.bind(this));
             // html.find(".item-edit").click(this._onItemEdit.bind(this));
             // html.find(".item-delete").click(this._onItemDelete.bind(this));
@@ -37,5 +38,59 @@ export default class DeathwatchMarineSheet extends ActorSheet {
         let field = element.dataset.field;
 
         return item.update({ [field]: element.checked });
+    }
+
+    async _onCharacteristicRoll(event) {
+        let actionName = event.currentTarget.dataset.actionName;
+        let confirmed = false;
+
+        new Dialog({
+            title: "Roll " + actionName,
+            content: `
+             <form>
+              <div class="form-group">
+               <label>Test Difficulty:</label>
+               <input id="test-difficulty" name="test-difficulty" value="0"></input>
+              </div>
+             </form>
+             `,
+            buttons: {
+                one: {
+                    icon: '<i class="fas fa-check"></i>',
+                    label: "Roll!",
+                    callback: () => confirmed = true
+                },
+                two: {
+                    icon: '<i class="fas fa-times"></i>',
+                    label: "Cancel",
+                    callback: () => confirmed = false
+                }
+            },
+            default: "Cancel",
+            close: async html => {
+                if (confirmed) {
+                    var roll = await new Roll("1d100", {}).roll({async: true});
+                    let statisticValue = parseInt(event.currentTarget.dataset.actionValue);
+                    let testDifficulty = parseInt(html.find('[name=test-difficulty]')[0].value);
+                    roll.toMessage({
+                        flavor: this.createRollFlavourString(roll.result, statisticValue, testDifficulty, actionName),
+                        user: game.user.id,
+                        speaker: { actor: this.object.data._id, alias: this.object.data.name }
+                    });
+                }
+            }
+        }).render(true);
+    }
+
+    createRollFlavourString(rollResult, statisticValue, testDifficulty, actionName) {
+        let finalTargetNumber = statisticValue + testDifficulty;
+        let result;
+        if (rollResult > finalTargetNumber) {
+            result = "Failure";
+        } else {
+            result = "Success";
+        }
+        let rollFlavour = result + " on " + actionName + "!";
+        return rollFlavour;
     }
 }
