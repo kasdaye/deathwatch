@@ -50,7 +50,21 @@ export default class DeathwatchMarineSheet extends ActorSheet {
              <form>
               <div class="form-group">
                <label>Test Difficulty:</label>
-               <input id="test-difficulty" name="test-difficulty" value="0"></input>
+               <select name="test-difficulty" id="test-difficulty">
+                <option value="60">Trivial (+60)</option>
+                <option value="50">Elementary (+50)</option>
+                <option value="40">Simple (+40)</option>
+                <option value="30">Easy (+30)</option>
+                <option value="20">Routine (+20)</option>
+                <option value="10">Ordinary (+10)</option>
+                <option value="0" selected>Challenging (+0)</option>
+                <option value="-10">Difficult (-10)</option>
+                <option value="-20">Hard (-20)</option>
+                <option value="-30">Very Hard (-30)</option>
+                <option value="-40">Arduous (-40)</option>
+                <option value="-50">Punishing (-50)</option>
+                <option value="-60">Hellish (-60)</option>
+               </select>
               </div>
              </form>
              `,
@@ -69,7 +83,7 @@ export default class DeathwatchMarineSheet extends ActorSheet {
             default: "Cancel",
             close: async html => {
                 if (confirmed) {
-                    var roll = await new Roll("1d100", {}).roll({async: true});
+                    var roll = await new Roll("1d100", {}).roll({ async: true });
                     let statisticValue = parseInt(event.currentTarget.dataset.actionValue);
                     let testDifficulty = parseInt(html.find('[name=test-difficulty]')[0].value);
                     roll.toMessage({
@@ -85,12 +99,43 @@ export default class DeathwatchMarineSheet extends ActorSheet {
     createRollFlavourString(rollResult, statisticValue, testDifficulty, actionName) {
         let finalTargetNumber = statisticValue + testDifficulty;
         let result;
+        let degrees;
         if (rollResult > finalTargetNumber) {
             result = "Failure";
+            degrees = parseInt((rollResult - finalTargetNumber) / 10).toString() + " DoF";
         } else {
             result = "Success";
+            degrees = parseInt((finalTargetNumber - rollResult) / 10).toString() + " DoS";
         }
-        let rollFlavour = result + " on " + actionName + "!";
+        let difficultyDescription = this.getDifficultyDescription(testDifficulty);
+        let rollFlavour = result + " on a " + difficultyDescription + " " + actionName + " Test by " + degrees;
         return rollFlavour;
+    }
+
+    getDifficultyDescription(testDifficulty) {
+        let difficultyDescriptionMap = new Map();
+        difficultyDescriptionMap.set(60, "Trivial (+60)");
+        difficultyDescriptionMap.set(50, "Elementary (+50)");
+        difficultyDescriptionMap.set(40, "Simple (+40)");
+        difficultyDescriptionMap.set(30, "Easy (+30)");
+        difficultyDescriptionMap.set(20, "Routine (+20)");
+        difficultyDescriptionMap.set(10, "Ordinary (+10)");
+        difficultyDescriptionMap.set(0, "Challenging (+0)");
+        difficultyDescriptionMap.set(-10, "Difficult (-10)");
+        difficultyDescriptionMap.set(-20, "Hard (-20)");
+        difficultyDescriptionMap.set(-30, "Very Hard (-30)");
+        difficultyDescriptionMap.set(-40, "Arduous (-40)");
+        difficultyDescriptionMap.set(-50, "Punishing (-50)");
+        difficultyDescriptionMap.set(-60, "Hellish (-60)");
+
+        // let difficultyDescription;
+        // if (testDifficulty < 0) {
+        //     difficultyDescription = testDifficulty.toString();
+        // } else {
+        //     difficultyDescription = "+" + testDifficulty.toString();
+        // }
+        // return difficultyDescription;
+
+        return difficultyDescriptionMap.get(testDifficulty);
     }
 }
