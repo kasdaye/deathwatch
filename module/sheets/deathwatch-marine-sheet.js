@@ -128,14 +128,6 @@ export default class DeathwatchMarineSheet extends ActorSheet {
         difficultyDescriptionMap.set(-50, "Punishing (-50)");
         difficultyDescriptionMap.set(-60, "Hellish (-60)");
 
-        // let difficultyDescription;
-        // if (testDifficulty < 0) {
-        //     difficultyDescription = testDifficulty.toString();
-        // } else {
-        //     difficultyDescription = "+" + testDifficulty.toString();
-        // }
-        // return difficultyDescription;
-
         return difficultyDescriptionMap.get(testDifficulty);
     }
 }
