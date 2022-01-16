@@ -1,3 +1,7 @@
+.window-app .window-content {
+    background: url(./ui/deathwatchCharacterSheetBackground.png) repeat;
+}
+
 td.characteristic-name {
     text-align: center;
 }
