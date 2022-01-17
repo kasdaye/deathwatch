@@ -19,6 +19,12 @@ Hooks.once("init", function () {
         if (a == b) { return options.fn(this); }
         return options.inverse(this);
     });
+
+    Handlebars.registerHelper('concat', function () {
+        var arg = Array.prototype.slice.call(arguments, 0);
+        arg.pop();
+        return arg.join('');
+    });
 });
 
 async function preloadHandlebarsTemplates() {
