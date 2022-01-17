@@ -1,30 +1,30 @@
-<tr class="actor-item" data-item-id="{{item.id}}">
+<tr class="actor-item" data-item-id="{{item._id}}">
     <td>
-        {{item.name}} ({{ localize (concat "deathwatch.characteristics." item.data.data.characteristic) }})
+        {{item.name}} ({{ localize (concat "deathwatch.characteristics." item.data.characteristic) }})
     </td>
     <td class="skill-box">
         <input class="checkbox-edit" type="checkbox" data-dtype="Boolean" data-field="data.isBasic" {{checked
-            item.data.data.isBasic}} />
+            item.data.isBasic}} />
     </td>
     <td class="skill-box">
         <input class="checkbox-edit" type="checkbox" data-dtype="Boolean" data-field="data.isTrained" {{checked
-            item.data.data.isTrained}} />
+            item.data.isTrained}} />
     </td>
     <td class="skill-box">
         <input class="checkbox-edit" type="checkbox" data-dtype="Boolean" data-field="data.hasPlus10Upgrade" {{checked
-            item.data.data.hasPlus10Upgrade}} />
+            item.data.hasPlus10Upgrade}} />
     </td>
     <td class="skill-box">
         <input class="checkbox-edit" type="checkbox" data-dtype="Boolean" data-field="data.hasPlus20Upgrade" {{checked
-            item.data.data.hasPlus20Upgrade}} />
+            item.data.hasPlus20Upgrade}} />
     </td>
     <td>
         <div>
-            <a class="item-control roll-skill" title="Roll {{item.name}}" data-governing-characteristic="{{item.data.data.characteristic}}"
-                data-action-name="{{item.name}}" data-is-basic="{{item.data.data.isBasic}}"
-                data-is-trained="{{item.data.data.isTrained}}"
-                data-has-plus-ten-upgrade="{{item.data.data.hasPlus10Upgrade}}"
-                data-has-plus-twenty-upgrade="{{item.data.data.hasPlus20Upgrade}}">
+            <a class="item-control roll-skill" title="Roll {{item.name}}" data-governing-characteristic="{{item.data.characteristic}}"
+                data-action-name="{{item.name}}" data-is-basic="{{item.data.isBasic}}"
+                data-is-trained="{{item.data.isTrained}}"
+                data-has-plus-ten-upgrade="{{item.data.hasPlus10Upgrade}}"
+                data-has-plus-twenty-upgrade="{{item.data.hasPlus20Upgrade}}">
                 <i class="fas fa-dice"></i>
             </a>
             <a class="item-control item-edit" title="Edit {{item.name}}"><i class="fas fa-edit"></i></a>

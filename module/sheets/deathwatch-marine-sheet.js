@@ -5,7 +5,15 @@ export default class DeathwatchMarineSheet extends ActorSheet {
 
     getData() {
         const data = super.getData();
+        
         data.config = CONFIG.deathwatch;
+        
+        const actorData = this.actor.data.toObject(false);
+        data.items = actorData.items;
+        data.items.sort(function (a, b) {
+            return a.name.localeCompare(b.name);
+        });
+
         return data;
     }
 
