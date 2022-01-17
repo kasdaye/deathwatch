@@ -4,10 +4,42 @@
         <h1><input name="name" type="text" value="{{item.name}}" placeholder="Name" /></h1>
     </header>
     <div class="skill-container">
-        <input name="data.characteristic" type="text" value="{{data.data.characteristic}}" data-dtype="String" />
-        <input name="data.isBasic" type="checkbox" {{checked data.data.isBasic}} />
-        <input name="data.isTrained" type="checkbox" {{checked data.data.isTrained}} />
-        <input name="data.hasPlus10Upgrade" type="checkbox" {{checked data.data.hasPlus10Upgrade}} />
-        <input name="data.hasPlus20Upgrade" type="checkbox" {{checked data.data.hasPlus20Upgrade}} />
+        <table>
+            <tr>
+                <th>
+                    Characteristic
+                </th>
+                <th class="skill-header-cell">
+                    Basic
+                </th>
+                <th class="skill-header-cell">
+                    Trained
+                </th>
+                <th class="skill-header-cell">
+                    +10%
+                </th>
+                <th class="skill-header-cell">
+                    +20%
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <input name="data.characteristic" type="text" value="{{data.data.characteristic}}"
+                        data-dtype="String" />
+                </td>
+                <td class="skill-box">
+                    <input name="data.isBasic" type="checkbox" {{checked data.data.isBasic}} />
+                </td>
+                <td class="skill-box">
+                    <input name="data.isTrained" type="checkbox" {{checked data.data.isTrained}} />
+                </td>
+                <td class="skill-box">
+                    <input name="data.hasPlus10Upgrade" type="checkbox" {{checked data.data.hasPlus10Upgrade}} />
+                </td>
+                <td class="skill-box">
+                    <input name="data.hasPlus20Upgrade" type="checkbox" {{checked data.data.hasPlus20Upgrade}} />
+                </td>
+            </tr>
+        </table>
     </div>
 </form>

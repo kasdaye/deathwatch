@@ -2,6 +2,7 @@
     background: url(./ui/deathwatchCharacterSheetBackground.png) repeat;
 }
 
+/* Characteristics */
 td.characteristic-name {
     text-align: center;
 }
@@ -34,6 +35,7 @@ div.characteristic-roll-container {
     left: 3px;
 }
 
+/* Skills */
 td.skill-box {
     text-align: center;
 }
