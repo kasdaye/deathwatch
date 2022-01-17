@@ -67,7 +67,7 @@
             "weapon"
         ],
         "skill": {
-            "characteristic": "S",
+            "characteristic": "strength",
             "isBasic": false,
             "isTrained": false,
             "hasPlus10Upgrade": false,

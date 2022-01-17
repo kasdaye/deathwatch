@@ -41,7 +41,7 @@
                         </tr>
                         {{#each actor.items as |item id|}}
                         {{#ifeq item.type "skill"}}
-                        {{> "systems/deathwatch/templates/partials/marine-skills-editable.hbs" actor item=item}}
+                        {{> "systems/deathwatch/templates/partials/marine-skills-editable.hbs" actor=actor item=item}}
                         {{/ifeq}}
                         {{/each}}
                     </table>

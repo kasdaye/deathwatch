@@ -14,8 +14,8 @@ export default class DeathwatchMarineSheet extends ActorSheet {
             html.find(".checkbox-edit").change(this._onCheckboxEdit.bind(this));
             html.find(".roll-characteristic").click(this._onCharacteristicRoll.bind(this))
             html.find(".roll-skill").click(this._onSkillRoll.bind(this));
-            // html.find(".item-edit").click(this._onItemEdit.bind(this));
-            // html.find(".item-delete").click(this._onItemDelete.bind(this));
+            html.find(".item-edit").click(this._onItemEdit.bind(this));
+            html.find(".item-delete").click(this._onItemDelete.bind(this));
         }
 
         super.activateListeners(html);
@@ -47,7 +47,8 @@ export default class DeathwatchMarineSheet extends ActorSheet {
         let hasPlusTenUpgrade = (event.currentTarget.dataset.hasPlusTenUpgrade === 'true');
         let hasPlusTwentyUpgrade = (event.currentTarget.dataset.hasPlusTwentyUpgrade === 'true');
 
-        let statisticValue = parseInt(event.currentTarget.dataset.actionValue);
+        let governingCharacteristic = event.currentTarget.dataset.governingCharacteristic;
+        let statisticValue = this.object.data.data.characteristics[governingCharacteristic].value;
 
         if (hasPlusTwentyUpgrade) {
             statisticValue += 20;
@@ -152,5 +153,21 @@ export default class DeathwatchMarineSheet extends ActorSheet {
         difficultyDescriptionMap.set(-60, "Hellish (-60)");
 
         return difficultyDescriptionMap.get(testDifficulty);
+    }
+
+    _onItemEdit(event) {
+        event.preventDefault();
+        let element = event.currentTarget;
+        let itemId = element.closest(".actor-item").dataset.itemId;
+        let item = this.object.items.get(itemId);
+        item.sheet.render(true);
+    }
+
+    _onItemDelete(event) {
+        event.preventDefault();
+        let element = event.currentTarget;
+        let itemId = element.closest(".actor-item").dataset.itemId;
+        let item = this.object.items.get(itemId);
+        item.delete();
     }
 }
