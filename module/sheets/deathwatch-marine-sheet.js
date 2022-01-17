@@ -13,7 +13,7 @@ export default class DeathwatchMarineSheet extends ActorSheet {
         if (this.actor.isOwner) {
             html.find(".checkbox-edit").change(this._onCheckboxEdit.bind(this));
             html.find(".roll-characteristic").click(this._onCharacteristicRoll.bind(this))
-            // html.find(".skill-roll").click(this._onSkillRoll.bind(this));
+            html.find(".roll-skill").click(this._onSkillRoll.bind(this));
             // html.find(".item-edit").click(this._onItemEdit.bind(this));
             // html.find(".item-delete").click(this._onItemDelete.bind(this));
         }
@@ -40,10 +40,34 @@ export default class DeathwatchMarineSheet extends ActorSheet {
         return item.update({ [field]: element.checked });
     }
 
+    async _onSkillRoll(event) {
+        let actionName = event.currentTarget.dataset.actionName;
+        let isBasic = (event.currentTarget.dataset.isBasic === 'true');
+        let isTrained = (event.currentTarget.dataset.isTrained === 'true');
+        let hasPlusTenUpgrade = (event.currentTarget.dataset.hasPlusTenUpgrade === 'true');
+        let hasPlusTwentyUpgrade = (event.currentTarget.dataset.hasPlusTwentyUpgrade === 'true');
+
+        let statisticValue = parseInt(event.currentTarget.dataset.actionValue);
+
+        if (hasPlusTwentyUpgrade) {
+            statisticValue += 20;
+        } else if (hasPlusTenUpgrade) {
+            statisticValue += 10;
+        } else if (isBasic && !isTrained) {
+            statisticValue = parseInt(statisticValue / 2)
+        }
+
+        this.showRollDialog(actionName, statisticValue);
+    }
+
     async _onCharacteristicRoll(event) {
         let actionName = event.currentTarget.dataset.actionName;
-        let confirmed = false;
+        let statisticValue = parseInt(event.currentTarget.dataset.actionValue);
+        this.showRollDialog(actionName, statisticValue);
+    }
 
+    async showRollDialog(actionName, statisticValue) {
+        let confirmed = false;
         new Dialog({
             title: "Roll " + actionName,
             content: `
@@ -84,7 +108,6 @@ export default class DeathwatchMarineSheet extends ActorSheet {
             close: async html => {
                 if (confirmed) {
                     var roll = await new Roll("1d100", {}).roll({ async: true });
-                    let statisticValue = parseInt(event.currentTarget.dataset.actionValue);
                     let testDifficulty = parseInt(html.find('[name=test-difficulty]')[0].value);
                     roll.toMessage({
                         flavor: this.createRollFlavourString(roll.result, statisticValue, testDifficulty, actionName),

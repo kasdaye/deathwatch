@@ -3,20 +3,30 @@
         {{item.name}} ({{item.data.data.characteristic}})
     </td>
     <td class="skill-box">
-        <input class="checkbox-edit" type="checkbox" data-dtype="Boolean" data-field="data.isBasic" {{checked item.data.data.isBasic}} />
+        <input class="checkbox-edit" type="checkbox" data-dtype="Boolean" data-field="data.isBasic" {{checked
+            item.data.data.isBasic}} />
     </td>
     <td class="skill-box">
-        <input class="checkbox-edit" type="checkbox" data-dtype="Boolean" data-field="data.isTrained" {{checked item.data.data.isTrained}} />
+        <input class="checkbox-edit" type="checkbox" data-dtype="Boolean" data-field="data.isTrained" {{checked
+            item.data.data.isTrained}} />
     </td>
     <td class="skill-box">
-        <input class="checkbox-edit" type="checkbox" data-dtype="Boolean" data-field="data.hasPlus10Upgrade" {{checked item.data.data.hasPlus10Upgrade}} />
+        <input class="checkbox-edit" type="checkbox" data-dtype="Boolean" data-field="data.hasPlus10Upgrade" {{checked
+            item.data.data.hasPlus10Upgrade}} />
     </td>
     <td class="skill-box">
-        <input class="checkbox-edit" type="checkbox" data-dtype="Boolean" data-field="data.hasPlus20Upgrade" {{checked item.data.data.hasPlus20Upgrade}} />
+        <input class="checkbox-edit" type="checkbox" data-dtype="Boolean" data-field="data.hasPlus20Upgrade" {{checked
+            item.data.data.hasPlus20Upgrade}} />
     </td>
     <td>
-        <div class="editable-skill-container" data-item-id="{{id}}">
-            <a class="item-control roll-skill" title="Edit Skill"><i class="fas fa-dice"></i></a>
+        <div>
+            <a class="item-control roll-skill" title="Roll {{item.name}}" data-action-value="31"
+                data-action-name="{{item.name}}" data-is-basic="{{item.data.data.isBasic}}"
+                data-is-trained="{{item.data.data.isTrained}}"
+                data-has-plus-ten-upgrade="{{item.data.data.hasPlus10Upgrade}}"
+                data-has-plus-twenty-upgrade="{{item.data.data.hasPlus20Upgrade}}">
+                <i class="fas fa-dice"></i>
+            </a>
             <a class="item-control item-edit" title="Edit Skill"><i class="fas fa-edit"></i></a>
             <a class="item-control item-delete" title="Delete Skill"><i class="fas fa-trash"></i></a>
         </div>
