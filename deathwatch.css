@@ -40,6 +40,15 @@ td.skill-box {
     text-align: center;
 }
 
+input[type="checkbox"].small-checkbox {
+    width: 13px;
+    height: 13px;
+    margin-top: 0px;
+    margin-right: 2px;
+    margin-bottom: 0px;
+    margin-left: 2px;
+}
+
 .editor {
     height: 100%;
 }
