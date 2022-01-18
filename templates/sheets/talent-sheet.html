@@ -1,0 +1,20 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+        <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64" />
+        <h1><input name="name" type="text" value="{{item.name}}" placeholder="Name" /></h1>
+    </header>
+    <div class="talent-container">
+        <table>
+            <tr>
+                <td>
+                    <b>Benefit</b>
+                </td>
+                <td>
+                    <input name="data.benefit" type="text" data-dtype="String" value="{{data.data.benefit}}" placeholder="Benefit" />
+                </td>
+            </tr>
+        </table>
+    </div>
+    <h2>Description</h2>
+    {{editor content=data.data.description target="data.description" button=true editable=true}}
+</form>

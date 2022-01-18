@@ -39,3 +39,7 @@ div.characteristic-roll-container {
 td.skill-box {
     text-align: center;
 }
+
+.editor {
+    height: 100%;
+}

@@ -64,6 +64,7 @@
     "Item": {
         "types": [
             "skill",
+            "talent",
             "weapon"
         ],
         "skill": {
@@ -72,6 +73,10 @@
             "isTrained": false,
             "hasPlus10Upgrade": false,
             "hasPlus20Upgrade": false
+        },
+        "talent": {
+            "benefit": "Benefit",
+            "description": "<p>Description</p>"
         },
         "weapon": {
             "class": "",

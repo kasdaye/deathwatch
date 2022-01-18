@@ -53,7 +53,26 @@
                 </section>
             </div>
             <div class="tab" data-tab="talents">
-                Talents
+                <section>
+                    <table>
+                        <tr class="talent-header-row">
+                            <th class="talent-header-cell">
+                                Talent or Trait
+                            </th>
+                            <th class="talent-header-cell">
+                                Benefit
+                            </th>
+                            <th class="talent-header-cell">
+
+                            </th>
+                        </tr>
+                        {{#each items as |item id|}}
+                        {{#ifeq item.type "talent"}}
+                        {{> "systems/deathwatch/templates/partials/marine-talents-editable.hbs" actor=actor item=item}}
+                        {{/ifeq}}
+                        {{/each}}
+                    </table>
+                </section>
             </div>
             <div class="tab" data-tab="combat">
                 Combat
