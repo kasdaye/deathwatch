@@ -1,4 +1,5 @@
 import { deathwatch } from "./module/config.js";
+import DeathwatchActor from "./module/deathwatch-actor.js";
 import SkillSheet from "./module/sheets/skill-sheet.js";
 import DeathwatchMarineSheet from "./module/sheets/deathwatch-marine-sheet.js";
 
@@ -6,6 +7,7 @@ Hooks.once("init", function () {
     console.log("deathwatch | Initializing Deathwatch System");
 
     CONFIG.deathwatch = deathwatch;
+    CONFIG.Actor.documentClass = DeathwatchActor;
 
     Items.unregisterSheet("core", ItemSheet);
     Items.registerSheet("deathwatch", SkillSheet, { types: ["skill"], makeDefault: true });
