@@ -26,6 +26,11 @@ Hooks.once("init", function () {
         return options.inverse(this);
     });
 
+    Handlebars.registerHelper('ifneq', function (a, b, options) {
+        if (a !== b) { return options.fn(this); }
+        return options.inverse(this);
+    });
+
     Handlebars.registerHelper('concat', function () {
         var arg = Array.prototype.slice.call(arguments, 0);
         arg.pop();
@@ -38,7 +43,9 @@ async function preloadHandlebarsTemplates() {
         "systems/deathwatch/templates/partials/marine-details.hbs",
         "systems/deathwatch/templates/partials/characteristics-bar.hbs",
         "systems/deathwatch/templates/partials/marine-skills-editable.hbs",
-        "systems/deathwatch/templates/partials/marine-talents-editable.hbs"
+        "systems/deathwatch/templates/partials/marine-talents-editable.hbs",
+        "systems/deathwatch/templates/partials/marine-combat-editable.hbs",
+        "systems/deathwatch/templates/partials/marine-combat-weapon.hbs"
     ];
 
     return loadTemplates(templatePaths);

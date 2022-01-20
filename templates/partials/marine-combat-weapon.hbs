@@ -1,0 +1,78 @@
+<div class="weapon-container-inline actor-item" data-item-id="{{item._id}}">
+    <table>
+        {{log item}}
+        <tr>
+            <th colspan="100%">{{item.name}}</th>
+        </tr>
+        <tr>
+            <td class="weapon-detail-header">
+                class
+            </td>
+            <td class="class-and-range-detail">
+                {{item.data.class}}
+            </td>
+            <td class="weapon-detail-header">
+                damage
+            </td>
+            <td class="damage-and-rof-detail">
+                {{item.data.damage}}
+            </td>
+            <td class="weapon-detail-header">
+                type
+            </td>
+            <td class="type-and-clip-detail">
+                {{item.data.type}}
+            </td>
+            <td class="weapon-detail-header">
+                pen
+            </td>
+            <td class="pen-and-reload-detail">
+                {{item.data.pen}}
+            </td>
+        </tr>
+        {{#ifneq item.data.class "Melee"}}
+        <tr>
+            <td class="weapon-detail-header">
+                range
+            </td>
+            <td class="class-and-range-detail">
+                {{item.data.range}}
+            </td>
+            <td class="weapon-detail-header">
+                rof
+            </td>
+            <td class="damage-and-rof-detail">
+                {{item.data.singleShotRateOfFire}}
+                /
+                {{item.data.semiAutomaticRateOfFire}}
+                /
+                {{item.data.fullAutomaticRateOfFire}}
+            </td>
+            <td class="weapon-detail-header">
+                clip
+            </td>
+            <td class="type-and-clip-detail">
+                {{item.data.clip}}
+            </td>
+            <td class="weapon-detail-header">
+                rld
+            </td>
+            <td class="pen-and-reload-detail">
+                {{item.data.reload}}
+            </td>
+        </tr>
+        {{/ifneq}}
+        <tr>
+            <td class="special-rules-detail-header" colspan="2">
+                special rules
+            </td>
+            <td class="special-rules-detail" colspan="5">
+                {{item.data.specialRules}}
+            </td>
+            <td>
+                <a class="item-control item-edit" title="Edit {{item.name}}"><i class="fas fa-edit"></i></a>
+                <a class="item-control item-delete" title="Delete {{item.name}}"><i class="fas fa-trash"></i></a>
+            </td>
+        </tr>
+    </table>
+</div>

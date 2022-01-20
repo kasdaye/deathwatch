@@ -1,0 +1,9 @@
+<section>
+    <div class="combat-weapon-list">
+        {{#each items as |item id|}}
+        {{#ifeq item.type "weapon"}}
+        {{> "systems/deathwatch/templates/partials/marine-combat-weapon.hbs" actor=actor item=item}}
+        {{/ifeq}}
+        {{/each}}
+    </div>
+</section>
