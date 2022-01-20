@@ -49,6 +49,40 @@ input[type="checkbox"].small-checkbox {
     margin-left: 2px;
 }
 
+/* Talents */
 .editor {
     height: 100%;
+}
+
+/* Weapons */
+td.weapon-detail-header {
+    width: 5%;
+}
+
+td.class-and-range-detail {
+    width: 7%;
+}
+
+td.damage-and-rof-detail {
+    width: 12.5%;
+}
+
+input[type="text"].rof {
+    width: 25%;
+}
+
+td.type-and-clip-detail {
+    width: 5%;
+}
+
+td.pen-and-reload-detail {
+    width: 5%;
+}
+
+td.special-rules-detail-header {
+    width: 12%;
+}
+
+td.special-rules-detail {
+    width: 88%;
 }

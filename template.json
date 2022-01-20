@@ -85,9 +85,9 @@
             "type": "",
             "pen": 0,
             "range": "",
-            "singleShotRateOfFire": "-",
-            "semiAutomaticRateOfFire": "-",
-            "fullAutomaticRateOfFire": "-",
+            "singleShotRateOfFire": "",
+            "semiAutomaticRateOfFire": "",
+            "fullAutomaticRateOfFire": "",
             "clip": "",
             "reload": "",
             "specialRules": ""

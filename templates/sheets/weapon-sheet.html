@@ -1,0 +1,85 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+        <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64" />
+        <h1><input name="name" type="text" value="{{item.name}}" placeholder="Name" /></h1>
+    </header>
+    <div class="weapon-container">
+        <table>
+            <tr>
+                <td class="weapon-detail-header">
+                    Class:
+                </td>
+                <td class="class-and-range-detail">
+                    <input name="data.class" type="text" data-dtype="String" value="{{data.data.class}}"
+                        placeholder="Basic" />
+                </td>
+                <td class="weapon-detail-header">
+                    Damage:
+                </td>
+                <td class="damage-and-rof-detail">
+                    <input name="data.damage" type="text" data-dtype="String" value="{{data.data.damage}}"
+                        placeholder="1d10+9" />
+                </td>
+                <td class="weapon-detail-header">
+                    Type:
+                </td>
+                <td class="type-and-clip-detail">
+                    <input name="data.type" type="text" data-dtype="String" value="{{data.data.type}}"
+                        placeholder="X" />
+                </td>
+                <td class="weapon-detail-header">
+                    Pen:
+                </td>
+                <td class="pen-and-reload-detail">
+                    <input name="data.pen" type="number" data-dtype="Number" value="{{data.data.pen}}"
+                        placeholder="4" />
+                </td>
+            </tr>
+            <tr>
+                <td class="weapon-detail-header">
+                    Range:
+                </td>
+                <td class="class-and-range-detail">
+                    <input name="data.range" type="text" data-dtype="String" value="{{data.data.range}}"
+                        placeholder="100m" />
+                </td>
+                <td class="weapon-detail-header">
+                    ROF:
+                </td>
+                <td class="damage-and-rof-detail">
+                    <input class="rof" name="data.singleShotRateOfFire" type="text" data-dtype="String"
+                        value="{{data.data.singleShotRateOfFire}}" placeholder="S" />
+                    /
+                    <input class="rof" name="data.semiAutomaticRateOfFire" type="text" data-dtype="String"
+                        value="{{data.data.semiAutomaticRateOfFire}}" placeholder="3" />
+                    /
+                    <input class="rof" name="data.fullAutomaticRateOfFire" type="text" data-dtype="String"
+                        value="{{data.data.fullAutomaticRateOfFire}}" placeholder="-" />
+                </td>
+                <td class="weapon-detail-header">
+                    Clip:
+                </td>
+                <td class="type-and-clip-detail">
+                    <input name="data.clip" type="text" data-dtype="String" value="{{data.data.clip}}"
+                        placeholder="28" />
+                </td>
+                <td class="weapon-detail-header">
+                    Reload:
+                </td>
+                <td class="pen-and-reload-detail">
+                    <input name="data.reload" type="text" data-dtype="String" value="{{data.data.reload}}"
+                        placeholder="Full" />
+                </td>
+            </tr>
+            <tr>
+                <td class="special-rules-detail-header" colspan="2">
+                    Special Rules:
+                </td>
+                <td class="special-rules-detail" colspan="100%">
+                    <input name="data.specialRules" type="text" data-dtype="String" value="{{data.data.specialRules}}"
+                        placeholder="Tearing" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>
