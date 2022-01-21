@@ -59,22 +59,12 @@ div.combat-flex-container {
     display: flex;
 }
 
+/* Weapons */
 div.combat-weapon-container {
     width: 50%;
     position: relative;
 }
 
-div.combat-armour-container {
-    width: 33%;
-    position: relative;
-}
-
-div.combat-stats-container {
-    width: 17%;
-    position: relative;
-}
-
-/* Weapons */
 td.weapon-detail-header {
     font-variant: small-caps;
     width: 5%;
@@ -107,6 +97,12 @@ td.special-rules-detail-header {
 
 td.special-rules-detail {
     width: 88%;
+}
+
+/* Armour */
+div.combat-armour-container {
+    width: 33%;
+    position: relative;
 }
 
 img.power-armour {
@@ -194,4 +190,18 @@ div.armour-component-value {
 
 input.armour-component-value-box {
     width: 40px;
+}
+
+/* Combat Stats */
+div.combat-stats-container {
+    width: 17%;
+    position: relative;
+    text-align: center;
+}
+
+div.combat-stats-wounds-container {
+}
+
+input.combat-stats-value-box {
+    width: 25px;
 }
