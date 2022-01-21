@@ -126,6 +126,13 @@ img.power-armour {
     left: 0px;
 }
 
+img.shoulder-pad {
+    border: 0px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
 div.armour-head-container {
     position: absolute;
     top: 4px;
