@@ -35,6 +35,7 @@
                         placeholder="4" />
                 </td>
             </tr>
+            {{#ifneq data.data.class "Melee"}}
             <tr>
                 <td class="weapon-detail-header">
                     range
@@ -71,6 +72,7 @@
                         placeholder="Full" />
                 </td>
             </tr>
+            {{/ifneq}}
             <tr>
                 <td class="special-rules-detail-header" colspan="2">
                     special rules
