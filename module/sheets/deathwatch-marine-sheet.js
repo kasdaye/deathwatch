@@ -322,21 +322,24 @@ export default class DeathwatchMarineSheet extends ActorSheet {
 
     createAttackRollFlavourString(rollResult, statisticValue, testDifficulty, actionName, weaponName) {
         let finalTargetNumber = statisticValue + testDifficulty;
-        let result;
-        let degrees;
-        if (rollResult > finalTargetNumber) {
-            result = "Failure";
-            degrees = parseInt((rollResult - finalTargetNumber) / 10).toString() + " DoF";
-        } else {
-            result = "Success";
-            degrees = parseInt((finalTargetNumber - rollResult) / 10).toString() + " DoS";
-        }
         let difficultyDescription = this.getDifficultyDescription(testDifficulty);
-        return this.composeAttackRollFlavourString(result, difficultyDescription, actionName, degrees, weaponName);
+
+        if (rollResult > finalTargetNumber) {
+            let degrees = parseInt((rollResult - finalTargetNumber) / 10).toString();
+            return this.composeMissedAttackRollFlavourString(difficultyDescription, actionName, degrees, weaponName);
+        } else {
+            let degrees = parseInt((finalTargetNumber - rollResult) / 10).toString();
+            let hitLocation = this.getHitLocation(rollResult);
+            return this.composeHitAttackRollFlavourString(difficultyDescription, actionName, degrees, weaponName, hitLocation);
+        }
     }
 
-    composeAttackRollFlavourString(result, difficultyDescription, actionName, degrees, weaponName) {
-        return result + " by " + degrees + " on a " + difficultyDescription + " " + actionName + " using " + weaponName;
+    composeMissedAttackRollFlavourString(difficultyDescription, actionName, degrees, weaponName) {
+        return "Missed with " + degrees + " DoF on a " + difficultyDescription + " " + actionName + " using " + weaponName + ".";
+    }
+
+    composeHitAttackRollFlavourString(difficultyDescription, actionName, degrees, weaponName, hitLocation) {
+        return "Hit with " + degrees + " DoS on a " + difficultyDescription + " " + actionName + " using " + weaponName + ". Hitting the target's " + hitLocation + ".";
     }
 
     getDifficultyDescription(testDifficulty) {
@@ -356,5 +359,29 @@ export default class DeathwatchMarineSheet extends ActorSheet {
         difficultyDescriptionMap.set(-60, "Hellish (-60)");
 
         return difficultyDescriptionMap.get(testDifficulty);
+    }
+
+    getHitLocation(rollResult) {
+        let dieResultString = rollResult.toString();
+        let lastDigit = dieResultString.substr(dieResultString.length - 1, 1);
+        let firstDigit = dieResultString.substr(dieResultString.length - 2, 1);
+        let reversedDieResultString = lastDigit + firstDigit;
+        let reversedDieResult = parseInt(reversedDieResultString);
+
+        if (reversedDieResult >= 1 && reversedDieResult <= 10) {
+            return "Head";
+        } else if (reversedDieResult >= 11 && reversedDieResult <= 20) {
+            return "Right Arm";
+        } else if (reversedDieResult >= 21 && reversedDieResult <= 30) {
+            return "Left Arm";
+        } else if (reversedDieResult >= 31 && reversedDieResult <= 70) {
+            return "Body";
+        } else if (reversedDieResult >= 71 && reversedDieResult <= 85) {
+            return "Right Leg";
+        } else if (reversedDieResult === 0 || (reversedDieResult >= 86 && reversedDieResult <= 99)) {
+            return "Left Leg";
+        } else {
+            return "Unknown";
+        }
     }
 }
