@@ -45,7 +45,10 @@ async function preloadHandlebarsTemplates() {
         "systems/deathwatch/templates/partials/marine-skills-editable.hbs",
         "systems/deathwatch/templates/partials/marine-talents-editable.hbs",
         "systems/deathwatch/templates/partials/marine-combat-editable.hbs",
-        "systems/deathwatch/templates/partials/marine-combat-weapon.hbs"
+        "systems/deathwatch/templates/partials/marine-combat-weapon.hbs",
+        "systems/deathwatch/templates/partials/marine-combat-armour.hbs",
+        "systems/deathwatch/templates/partials/marine-combat-wounds.hbs",
+        "systems/deathwatch/templates/partials/marine-combat-fatigue.hbs"
     ];
 
     return loadTemplates(templatePaths);

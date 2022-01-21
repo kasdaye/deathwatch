@@ -8,99 +8,11 @@
             {{/each}}
         </div>
         <div class="combat-armour-container">
-            <img class="power-armour" src="systems/deathwatch/ui/powerArmour.png" alt="Power Armour Image">
-            <div class="armour-head-container">
-                <div class="armour-component-name">
-                    head
-                </div>
-                <div class="armour-component-value">
-                    <input class="armour-component-value-box" name="data.armour.head.armourPoints" type="number"
-                        value="{{actor.data.data.armour.head.armourPoints}}" data-dtype="Number" />
-                </div>
-            </div>
-            <div class="armour-right-arm-container">
-                <div class="armour-component-name">
-                    right arm
-                </div>
-                <div class="armour-component-value">
-                    <input class="armour-component-value-box" name="data.armour.rightArm.armourPoints" type="number"
-                        value="{{actor.data.data.armour.rightArm.armourPoints}}" data-dtype="Number" />
-                </div>
-            </div>
-            <div class="armour-left-arm-container">
-                <div class="armour-component-name">
-                    left arm
-                </div>
-                <div class="armour-component-value">
-                    <input class="armour-component-value-box" name="data.armour.leftArm.armourPoints" type="number"
-                        value="{{actor.data.data.armour.leftArm.armourPoints}}" data-dtype="Number" />
-                </div>
-            </div>
-            <div class="armour-body-container">
-                <div class="armour-component-name">
-                    body
-                </div>
-                <div class="armour-component-value">
-                    <input class="armour-component-value-box" name="data.armour.body.armourPoints" type="number"
-                        value="{{actor.data.data.armour.body.armourPoints}}" data-dtype="Number" />
-                </div>
-            </div>
-            <div class="armour-right-leg-container">
-                <div class="armour-component-name">
-                    right leg
-                </div>
-                <div class="armour-component-value">
-                    <input class="armour-component-value-box" name="data.armour.rightLeg.armourPoints" type="number"
-                        value="{{actor.data.data.armour.rightLeg.armourPoints}}" data-dtype="Number" />
-                </div>
-            </div>
-            <div class="armour-left-leg-container">
-                <div class="armour-component-name">
-                    left leg
-                </div>
-                <div class="armour-component-value">
-                    <input class="armour-component-value-box" name="data.armour.leftLeg.armourPoints" type="number"
-                        value="{{actor.data.data.armour.leftLeg.armourPoints}}" data-dtype="Number" />
-                </div>
-            </div>
+            {{> "systems/deathwatch/templates/partials/marine-combat-armour.hbs" actor=actor}}
         </div>
         <div class="combat-stats-container">
-            <div class="combat-stats-wounds-container">
-                <table>
-                    <tr>
-                        <th colspan="3">
-                            Wounds
-                        </th>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input class="combat-stats-value-box" name="data.injury.wounds.value" type="number"
-                                value="{{actor.data.data.injury.wounds.value}}" data-dtype="Number" />
-                        </td>
-                        <td>
-                            /
-                        </td>
-                        <td>
-                            <input class="combat-stats-value-box" name="data.injury.wounds.max" type="number"
-                                value="{{actor.data.data.injury.wounds.max}}" data-dtype="Number" />
-                        </td>
-                    </tr>
-                </table>
-            </div><div class="combat-stats-fatigue-container">
-                <table>
-                    <tr>
-                        <th>
-                            Fatgiue
-                        </th>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input class="combat-stats-value-box" name="data.injury.fatigue.value" type="number"
-                                value="{{actor.data.data.injury.fatigue.value}}" data-dtype="Number" />
-                        </td>
-                    </tr>
-                </table>
-            </div>
+            {{> "systems/deathwatch/templates/partials/marine-combat-wounds.hbs" actor=actor}}
+            {{> "systems/deathwatch/templates/partials/marine-combat-fatigue.hbs" actor=actor}}
         </div>
     </div>
 </section>
