@@ -54,19 +54,27 @@ input[type="checkbox"].small-checkbox {
     height: 100%;
 }
 
-/* Weapons */
+/* Combat */
 div.combat-flex-container {
     display: flex;
 }
 
-div.combat-flex-child {
-    flex: 1;
+div.combat-weapon-container {
+    width: 50%;
+    position: relative;
 }
 
-div.combat-flex-child:first-child {
-    margin-right: 5px;
+div.combat-armour-container {
+    width: 33%;
+    position: relative;
 }
 
+div.combat-stats-container {
+    width: 17%;
+    position: relative;
+}
+
+/* Weapons */
 td.weapon-detail-header {
     font-variant: small-caps;
     width: 5%;
@@ -101,11 +109,89 @@ td.special-rules-detail {
     width: 88%;
 }
 
-/* Armour */
-div.power-armour-container {
-    margin-top: 7px;
-}
-
 img.power-armour {
     border: 0px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+div.armour-head-container {
+    position: absolute;
+    top: 4px;
+    left: 95px;
+    height: 59px;
+    width: 59px;
+    background: ghostwhite;
+    opacity: 0.7;
+    text-align: center;
+}
+
+div.armour-right-arm-container {
+    position: absolute;
+    top: 122px;
+    left: 10px;
+    height: 59px;
+    width: 59px;
+    background: ghostwhite;
+    opacity: 0.7;
+    text-align: center;
+}
+
+div.armour-left-arm-container {
+    position: absolute;
+    top: 122px;
+    left: 181px;
+    height: 59px;
+    width: 59px;
+    background: ghostwhite;
+    opacity: 0.7;
+    text-align: center;
+}
+
+div.armour-body-container {
+    position: absolute;
+    top: 90px;
+    left: 95px;
+    height: 59px;
+    width: 59px;
+    background: ghostwhite;
+    opacity: 0.7;
+    text-align: center;
+}
+
+div.armour-right-leg-container {
+    position: absolute;
+    top: 244px;
+    left: 26px;
+    height: 59px;
+    width: 59px;
+    background: ghostwhite;
+    opacity: 0.7;
+    text-align: center;
+}
+
+div.armour-left-leg-container {
+    position: absolute;
+    top: 244px;
+    left: 165px;
+    height: 59px;
+    width: 59px;
+    background: ghostwhite;
+    opacity: 0.7;
+    text-align: center;
+}
+
+div.armour-component-name {
+    font-size: 1rem;
+    font-weight: bold;
+    font-variant: small-caps;
+}
+
+div.armour-component-value {
+    font-size: 2rem;
+}
+
+input.armour-component-value-box {
+    width: 40px;
 }
