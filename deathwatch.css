@@ -216,3 +216,7 @@ div.combat-stats-container {
 input.combat-stats-value-box {
     width: 25px;
 }
+
+input.experience-value-box {
+    width: 75px;
+}

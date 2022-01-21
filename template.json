@@ -58,7 +58,10 @@
                 "specialty": "",
                 "rank": 1,
                 "powerArmourHistory": "",
-                "description": ""
+                "description": "",
+                "renown": 0,
+                "xpToSpend": 0,
+                "totalXpSpent": 0
             },
             "characteristics": {
                 "weaponSkill": {

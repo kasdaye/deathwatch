@@ -53,6 +53,18 @@
             <th class="important-stat-detail">
                 Corruption
             </th>
+            <th class="important-stat-detail">
+                Renown
+            </th>
+            <th class="important-stat-detail">
+                Rank
+            </th>
+            <th class="important-stat-detail">
+                XP to Spend
+            </th>
+            <th class="important-stat-detail">
+                Total XP Spent
+            </th>
         </tr>
         <tr>
             <td class="important-stat-detail">
@@ -73,6 +85,22 @@
             <td class="important-stat-detail">
                 <input class="important-stat-value-box" name="data.injury.corruptionPoints.value" type="number"
                     value="{{actor.data.data.corruptionPoints.value}}" data-dtype="Number" />
+            </td>
+            <td class="important-stat-detail">
+                <input class="important-stat-value-box" name="data.marineDetails.renown" type="number"
+                    value="{{actor.data.data.marineDetails.renown}}" data-dtype="Number" />
+            </td>
+            <td class="important-stat-detail">
+                <input class="important-stat-value-box" name="data.marineDetails.rank" type="number"
+                    value="{{actor.data.data.marineDetails.rank}}" data-dtype="Number" />
+            </td>
+            <td class="important-stat-detail">
+                <input class="experience-value-box" name="data.marineDetails.xpToSpend" type="number"
+                    value="{{actor.data.data.marineDetails.xpToSpend}}" data-dtype="Number" />
+            </td>
+            <td class="important-stat-detail">
+                <input class="experience-value-box" name="data.marineDetails.totalXpSpent" type="number"
+                    value="{{actor.data.data.marineDetails.totalXpSpent}}" data-dtype="Number" />
             </td>
         </tr>
     </table>
