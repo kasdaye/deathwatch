@@ -19,11 +19,11 @@ input[type="number"].characteristic-bonus-box {
     text-align: center;
 }
 
-div.relative {
+div.relative-characteristic-container {
     position: relative;
 }
 
-div.absolute {
+div.absolute-bonus-container {
     position: absolute;
     top: 0px;
     left: 0px;

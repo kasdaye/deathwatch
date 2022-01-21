@@ -18,15 +18,15 @@
             {{#each config.characteristics as |name type|}}
             {{#with (lookup ../data.data.characteristics type) as |characteristic|}}
             <td>
-                <div class="relative">
+                <div class="relative-characteristic-container">
                     <input class="characteristic-box" name="data.characteristics.{{type}}.value" type="number"
                         value="{{characteristic.value}}" data-dtype="Number" />
-                    <div class="absolute">
-                        {{#if characteristic.bonus}}
+                    {{#if characteristic.bonus}}
+                    <div class="absolute-bonus-container">
                         <input class="characteristic-bonus-box" name="data.characteristics.{{type}}.bonus" type="number"
                             value="{{characteristic.bonus}}" data-dtype="Number" />
-                        {{/if}}
                     </div>
+                    {{/if}}
                     <div class="characteristic-roll-container">
                         <a class="roll-characteristic" title="Roll {{ localize name }}"
                             data-action-value="{{characteristic.value}}" data-action-name="{{ localize name }}">
