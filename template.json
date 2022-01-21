@@ -3,8 +3,50 @@
         "types": [
             "deathwatchMarine"
         ],
+        "templates": {
+            "armour": {
+                "head": {
+                    "armourPoints": 0,
+                    "hitLocationLowerBound": 1,
+                    "hitLocationUpperBound": 10,
+                    "type": ""
+                },
+                "rightArm": {
+                    "armourPoints": 0,
+                    "hitLocationLowerBound": 11,
+                    "hitLocationUpperBound": 20,
+                    "type": ""
+                },
+                "leftArm": {
+                    "armourPoints": 0,
+                    "hitLocationLowerBound": 21,
+                    "hitLocationUpperBound": 30,
+                    "type": ""
+                },
+                "body": {
+                    "armourPoints": 0,
+                    "hitLocationLowerBound": 31,
+                    "hitLocationUpperBound": 70,
+                    "type": ""
+                },
+                "rightLeg": {
+                    "armourPoints": 0,
+                    "hitLocationLowerBound": 71,
+                    "hitLocationUpperBound": 85,
+                    "type": ""
+                },
+                "leftLeg": {
+                    "armourPoints": 0,
+                    "hitLocationLowerBound": 86,
+                    "hitLocationUpperBound": 100,
+                    "type": ""
+                }
+            }
+        },
         "deathwatchMarine": {
-            "templates": [],
+            "templates": [
+                "armour"
+            ],
             "marineDetails": {
                 "playerName": "",
                 "chapter": "",

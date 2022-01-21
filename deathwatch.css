@@ -55,8 +55,16 @@ input[type="checkbox"].small-checkbox {
 }
 
 /* Weapons */
-div.combat-weapon-list {
-    width: 50%;
+div.combat-flex-container {
+    display: flex;
+}
+
+div.combat-flex-child {
+    flex: 1;
+}
+
+div.combat-flex-child:first-child {
+    margin-right: 5px;
 }
 
 td.weapon-detail-header {
@@ -91,4 +99,13 @@ td.special-rules-detail-header {
 
 td.special-rules-detail {
     width: 88%;
+}
+
+/* Armour */
+div.power-armour-container {
+    margin-top: 7px;
+}
+
+img.power-armour {
+    border: 0px;
 }
