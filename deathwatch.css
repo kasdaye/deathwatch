@@ -35,6 +35,20 @@ div.characteristic-roll-container {
     left: 3px;
 }
 
+/* Important Stats */
+th.fate-points-detail {
+    width: 12.5%;
+}
+
+td.fate-points-detail {
+    width: 12.5%;
+    text-align: center;
+}
+
+input[type="number"].fate-points-value-box {
+    width: 25%;
+}
+
 /* Skills */
 td.skill-box {
     text-align: center;

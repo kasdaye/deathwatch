@@ -91,6 +91,10 @@
                     "value": 30
                 }
             },
+            "fatePoints": {
+                "value": 0,
+                "max": 0
+            },
             "injury": {
                 "wounds": {
                     "value": 0,
