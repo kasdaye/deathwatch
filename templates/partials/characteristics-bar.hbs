@@ -41,24 +41,38 @@
     </table>
     <table>
         <tr>
-            <th class="fate-points-detail">
+            <th class="important-stat-detail">
                 Fate Points
             </th>
-            <th>
+            <th class="important-stat-detail">
                 Fatigue
+            </th>
+            <th class="important-stat-detail">
+                Insanity
+            </th>
+            <th class="important-stat-detail">
+                Corruption
             </th>
         </tr>
         <tr>
-            <td class="fate-points-detail">
-                <input class="fate-points-value-box" name="data.fatePoints.value" type="number"
+            <td class="important-stat-detail">
+                <input class="important-stat-value-box" name="data.fatePoints.value" type="number"
                     value="{{actor.data.data.fatePoints.value}}" data-dtype="Number" />
                 /
-                <input class="fate-points-value-box" name="data.fatePoints.max" type="number"
+                <input class="important-stat-value-box" name="data.fatePoints.max" type="number"
                     value="{{actor.data.data.fatePoints.max}}" data-dtype="Number" />
             </td>
-            <td>
-                <input class="fatigue-value-box" name="data.injury.fatigue.value" type="number"
+            <td class="important-stat-detail">
+                <input class="important-stat-value-box" name="data.injury.fatigue.value" type="number"
                     value="{{actor.data.data.injury.fatigue.value}}" data-dtype="Number" />
+            </td>
+            <td class="important-stat-detail">
+                <input class="important-stat-value-box" name="data.insanityPoints.value" type="number"
+                    value="{{actor.data.data.insanityPoints.value}}" data-dtype="Number" />
+            </td>
+            <td class="important-stat-detail">
+                <input class="important-stat-value-box" name="data.injury.corruptionPoints.value" type="number"
+                    value="{{actor.data.data.corruptionPoints.value}}" data-dtype="Number" />
             </td>
         </tr>
     </table>

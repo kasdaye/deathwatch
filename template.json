@@ -107,6 +107,18 @@
                 "fatigue": {
                     "value": 0
                 }
+            },
+            "insanityPoints": {
+                "value": 0
+            },
+            "corruptionPoints": {
+                "value": 0
+            },
+            "movement": {
+                "half": 0,
+                "full": 0,
+                "charge": 0,
+                "run": 0
             }
         }
     },
