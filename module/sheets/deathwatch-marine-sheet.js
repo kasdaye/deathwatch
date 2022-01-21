@@ -5,9 +5,9 @@ export default class DeathwatchMarineSheet extends ActorSheet {
 
     getData() {
         const data = super.getData();
-        
+
         data.config = CONFIG.deathwatch;
-        
+
         const actorData = this.actor.data.toObject(false);
         data.items = actorData.items;
         data.items.sort(function (a, b) {
@@ -24,6 +24,7 @@ export default class DeathwatchMarineSheet extends ActorSheet {
             html.find(".roll-skill").click(this._onSkillRoll.bind(this));
             html.find(".item-edit").click(this._onItemEdit.bind(this));
             html.find(".item-delete").click(this._onItemDelete.bind(this));
+            html.find(".roll-attack").click(this._onAttackRoll.bind(this));
         }
 
         super.activateListeners(html);
@@ -46,6 +47,134 @@ export default class DeathwatchMarineSheet extends ActorSheet {
         let field = element.dataset.field;
 
         return item.update({ [field]: element.checked });
+    }
+
+    async _onAttackRoll(event) {
+        let itemId = event.currentTarget.dataset.itemId;
+        let item = this.object.items.get(itemId);
+
+        let governingCharacteristic = event.currentTarget.dataset.governingCharacteristic;
+        let statisticValue = this.object.data.data.characteristics[governingCharacteristic].value;
+
+        if (governingCharacteristic === "weaponSkill") {
+            this.showMeleeAttackDialog(item.name, statisticValue);
+        } else {
+            this.showRangedAttackDialog(item.name, statisticValue);
+        }
+    }
+
+    async showMeleeAttackDialog(weaponName, statisticValue) {
+        let confirmed = false;
+        let actionName = "Standard Attack";
+        new Dialog({
+            title: "Attack with " + weaponName,
+            content: `
+             <form>
+              <div class="form-group">
+               <label>Test Difficulty:</label>
+               <select name="test-difficulty" id="test-difficulty">
+                <option value="60">Trivial (+60)</option>
+                <option value="50">Elementary (+50)</option>
+                <option value="40">Simple (+40)</option>
+                <option value="30">Easy (+30)</option>
+                <option value="20">Routine (+20)</option>
+                <option value="10">Ordinary (+10)</option>
+                <option value="0" selected>Challenging (+0)</option>
+                <option value="-10">Difficult (-10)</option>
+                <option value="-20">Hard (-20)</option>
+                <option value="-30">Very Hard (-30)</option>
+                <option value="-40">Arduous (-40)</option>
+                <option value="-50">Punishing (-50)</option>
+                <option value="-60">Hellish (-60)</option>
+               </select>
+              </div>
+             </form>
+             `,
+            buttons: {
+                standardAttack: {
+                    icon: '<i class="fas fa-check"></i>',
+                    label: "Standard Attack",
+                    callback: function () {
+                        confirmed = true;
+                        actionName = "Standard Attack";
+                    }
+                },
+                cancelAttack: {
+                    icon: '<i class="fas fa-times"></i>',
+                    label: "Cancel Attack",
+                    callback: () => confirmed = false
+                }
+            },
+            default: "Cancel",
+            close: async html => {
+                if (confirmed) {
+                    var roll = await new Roll("1d100", {}).roll({ async: true });
+                    let testDifficulty = parseInt(html.find('[name=test-difficulty]')[0].value);
+                    roll.toMessage({
+                        flavor: this.createAttackRollFlavourString(roll.result, statisticValue, testDifficulty, actionName, weaponName),
+                        user: game.user.id,
+                        speaker: { actor: this.object.data._id, alias: this.object.data.name }
+                    });
+                }
+            }
+        }).render(true);
+    }
+
+    async showRangedAttackDialog(weaponName, statisticValue) {
+        let confirmed = false;
+        let actionName = "Standard Attack";
+        new Dialog({
+            title: "Attack with " + weaponName,
+            content: `
+             <form>
+              <div class="form-group">
+               <label>Test Difficulty:</label>
+               <select name="test-difficulty" id="test-difficulty">
+                <option value="60">Trivial (+60)</option>
+                <option value="50">Elementary (+50)</option>
+                <option value="40">Simple (+40)</option>
+                <option value="30">Easy (+30)</option>
+                <option value="20">Routine (+20)</option>
+                <option value="10">Ordinary (+10)</option>
+                <option value="0" selected>Challenging (+0)</option>
+                <option value="-10">Difficult (-10)</option>
+                <option value="-20">Hard (-20)</option>
+                <option value="-30">Very Hard (-30)</option>
+                <option value="-40">Arduous (-40)</option>
+                <option value="-50">Punishing (-50)</option>
+                <option value="-60">Hellish (-60)</option>
+               </select>
+              </div>
+             </form>
+             `,
+            buttons: {
+                standardAttack: {
+                    icon: '<i class="fas fa-check"></i>',
+                    label: "Standard Attack",
+                    callback: function () {
+                        confirmed = true;
+                        actionName = "Standard Attack";
+                    }
+                },
+                cancelAttack: {
+                    icon: '<i class="fas fa-times"></i>',
+                    label: "Cancel Attack",
+                    callback: () => confirmed = false
+                }
+            },
+            default: "Cancel",
+            close: async html => {
+                if (confirmed) {
+                    var roll = await new Roll("1d100", {}).roll({ async: true });
+                    let testDifficulty = parseInt(html.find('[name=test-difficulty]')[0].value);
+                    roll.toMessage({
+                        flavor: this.createAttackRollFlavourString(roll.result, statisticValue, testDifficulty, actionName, weaponName),
+                        user: game.user.id,
+                        speaker: { actor: this.object.data._id, alias: this.object.data.name }
+                    });
+                }
+            }
+        }).render(true);
     }
 
     async _onSkillRoll(event) {
@@ -141,6 +270,22 @@ export default class DeathwatchMarineSheet extends ActorSheet {
         }
         let difficultyDescription = this.getDifficultyDescription(testDifficulty);
         let rollFlavour = result + " on a " + difficultyDescription + " " + actionName + " Test by " + degrees;
+        return rollFlavour;
+    }
+
+    createAttackRollFlavourString(rollResult, statisticValue, testDifficulty, actionName, weaponName) {
+        let finalTargetNumber = statisticValue + testDifficulty;
+        let result;
+        let degrees;
+        if (rollResult > finalTargetNumber) {
+            result = "Failure";
+            degrees = parseInt((rollResult - finalTargetNumber) / 10).toString() + " DoF";
+        } else {
+            result = "Success";
+            degrees = parseInt((finalTargetNumber - rollResult) / 10).toString() + " DoS";
+        }
+        let difficultyDescription = this.getDifficultyDescription(testDifficulty);
+        let rollFlavour = result + " by " + degrees + " on a " + difficultyDescription + " " + actionName + " using " + weaponName;
         return rollFlavour;
     }
 
