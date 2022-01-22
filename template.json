@@ -1,9 +1,43 @@
 {
     "Actor": {
         "types": [
-            "deathwatchMarine"
+            "deathwatchMarine",
+            "horde"
         ],
         "templates": {
+            "characteristics": {
+                "characteristics": {
+                    "weaponSkill": {
+                        "value": 30
+                    },
+                    "ballisticSkill": {
+                        "value": 30
+                    },
+                    "strength": {
+                        "value": 30,
+                        "bonus": 3
+                    },
+                    "toughness": {
+                        "value": 30,
+                        "bonus": 3
+                    },
+                    "agility": {
+                        "value": 30
+                    },
+                    "intelligence": {
+                        "value": 30
+                    },
+                    "perception": {
+                        "value": 30
+                    },
+                    "willpower": {
+                        "value": 30
+                    },
+                    "fellowship": {
+                        "value": 30
+                    }
+                }
+            },
             "armour": {
                 "armour": {
                     "head": {
@@ -43,11 +77,37 @@
                         "type": ""
                     }
                 }
+            },
+            "injury": {
+                "injury": {
+                    "wounds": {
+                        "value": 0,
+                        "max": 0
+                    },
+                    "criticalDamage": {
+                        "value": 0,
+                        "max": 10
+                    },
+                    "fatigue": {
+                        "value": 0
+                    }
+                }
+            },
+            "movement": {
+                "movement": {
+                    "half": 0,
+                    "full": 0,
+                    "charge": 0,
+                    "run": 0
+                }
             }
         },
         "deathwatchMarine": {
             "templates": [
-                "armour"
+                "characteristics",
+                "movement",
+                "armour",
+                "injury"
             ],
             "marineDetails": {
                 "playerName": "",
@@ -63,65 +123,30 @@
                 "xpToSpend": 0,
                 "totalXpSpent": 0
             },
-            "characteristics": {
-                "weaponSkill": {
-                    "value": 30
-                },
-                "ballisticSkill": {
-                    "value": 30
-                },
-                "strength": {
-                    "value": 30,
-                    "bonus": 3
-                },
-                "toughness": {
-                    "value": 30,
-                    "bonus": 3
-                },
-                "agility": {
-                    "value": 30
-                },
-                "intelligence": {
-                    "value": 30
-                },
-                "perception": {
-                    "value": 30
-                },
-                "willpower": {
-                    "value": 30
-                },
-                "fellowship": {
-                    "value": 30
-                }
-            },
             "fatePoints": {
                 "value": 0,
                 "max": 0
-            },
-            "injury": {
-                "wounds": {
-                    "value": 0,
-                    "max": 0
-                },
-                "criticalDamage": {
-                    "value": 0,
-                    "max": 10
-                },
-                "fatigue": {
-                    "value": 0
-                }
             },
             "insanityPoints": {
                 "value": 0
             },
             "corruptionPoints": {
                 "value": 0
+            }
+        },
+        "horde": {
+            "templates": [
+                "characteristics",
+                "movement"
+            ],
+            "armour": {
+                "armourPoints": 0
             },
-            "movement": {
-                "half": 0,
-                "full": 0,
-                "charge": 0,
-                "run": 0
+            "injury": {
+                "magnitude": {
+                    "value": 0,
+                    "max": 0
+                }
             }
         }
     },
