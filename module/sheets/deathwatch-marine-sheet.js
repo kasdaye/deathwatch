@@ -220,14 +220,16 @@ export default class DeathwatchMarineSheet extends ActorSheet {
             title: "Attack with " + item.name,
             content: this.getTestDifficultyHtml(),
             buttons: {
-                standardAttack: {
-                    icon: '<i class="fas fa-check"></i>',
-                    label: "Standard Attack",
-                    callback: function () {
-                        confirmed = true;
-                        actionName = "Standard Attack";
+                ...((item.data.data.singleShotRateOfFire === "S") && {
+                    standardAttack: {
+                        icon: '<i class="fas fa-check"></i>',
+                        label: "Standard Attack",
+                        callback: function () {
+                            confirmed = true;
+                            actionName = "Standard Attack";
+                        }
                     }
-                },
+                }),
                 calledShot: {
                     icon: '<i class="fas fa-check"></i>',
                     label: "Called Shot",
@@ -237,24 +239,28 @@ export default class DeathwatchMarineSheet extends ActorSheet {
                         modifier = -20;
                     }
                 },
-                fullAutoBurst: {
-                    icon: '<i class="fas fa-check"></i>',
-                    label: "Full Auto Burst",
-                    callback: function () {
-                        confirmed = true;
-                        actionName = "Full Auto Burst";
-                        modifier = 20;
+                ...((item.data.data.fullAutomaticRateOfFire !== "-" && item.data.data.fullAutomaticRateOfFire > "0") && {
+                    fullAutoBurst: {
+                        icon: '<i class="fas fa-check"></i>',
+                        label: "Full Auto Burst",
+                        callback: function () {
+                            confirmed = true;
+                            actionName = "Full Auto Burst";
+                            modifier = 20;
+                        }
                     }
-                },
-                semiAutoBurst: {
-                    icon: '<i class="fas fa-check"></i>',
-                    label: "Semi Auto Burst",
-                    callback: function () {
-                        confirmed = true;
-                        actionName = "Semi Auto Burst";
-                        modifier = 10;
+                }),
+                ...((item.data.data.semiAutomaticRateOfFire !== "-" && item.data.data.semiAutomaticRateOfFire > "0") && {
+                    semiAutoBurst: {
+                        icon: '<i class="fas fa-check"></i>',
+                        label: "Semi Auto Burst",
+                        callback: function () {
+                            confirmed = true;
+                            actionName = "Semi Auto Burst";
+                            modifier = 10;
+                        }
                     }
-                },
+                }),
                 cancelAttack: {
                     icon: '<i class="fas fa-times"></i>',
                     label: "Cancel Attack",
@@ -331,7 +337,7 @@ export default class DeathwatchMarineSheet extends ActorSheet {
             let degrees = parseInt((finalTargetNumber - rollResult) / 10).toString();
             let hitLocation = this.getHitLocation(rollResult);
             if (actionName === "Full Auto Burst" && degrees >= 1) {
-                let extraHits = Math.min(item.data.data.fullAutoBurst - 1, degrees);
+                let extraHits = Math.min(item.data.data.fullAutomaticRateOfFire - 1, degrees);
                 hitLocation = this.addMultipleHitLocations(hitLocation, extraHits);
             } else if (actionName === "Semi Auto Burst" && degrees >= 2) {
                 let extraHits = Math.min(item.data.data.semiAutomaticRateOfFire - 1, parseInt(degrees / 2));
