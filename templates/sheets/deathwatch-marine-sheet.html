@@ -93,7 +93,7 @@
                         </tr>
                         {{#each items as |item id|}}
                         {{#ifeq item.type "gear"}}
-                        {{> "systems/deathwatch/templates/partials/marine-gear-editable.hbs" actor=actor item=item}}
+                        {{> "systems/deathwatch/templates/partials/gear-editable.hbs" actor=actor item=item}}
                         {{/ifeq}}
                         {{/each}}
                     </table>
