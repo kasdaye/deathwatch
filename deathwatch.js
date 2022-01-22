@@ -3,6 +3,7 @@ import DeathwatchActor from "./module/deathwatch-actor.js";
 import SkillSheet from "./module/sheets/skill-sheet.js";
 import TalentSheet from "./module/sheets/talent-sheet.js";
 import WeaponSheet from "./module/sheets/weapon-sheet.js";
+import GearSheet from "./module/sheets/gear-sheet.js";
 import DeathwatchMarineSheet from "./module/sheets/deathwatch-marine-sheet.js";
 
 Hooks.once("init", function () {
@@ -15,6 +16,7 @@ Hooks.once("init", function () {
     Items.registerSheet("deathwatch", SkillSheet, { types: ["skill"], makeDefault: true });
     Items.registerSheet("deathwatch", TalentSheet, { types: ["talent"], makeDefault: true });
     Items.registerSheet("deathwatch", WeaponSheet, { types: ["weapon"], makeDefault: true });
+    Items.registerSheet("deathwatch", GearSheet, { types: ["gear"], makeDefault: true });
 
     Actors.unregisterSheet("core", ActorSheet);
     Actors.registerSheet("deathwatch", DeathwatchMarineSheet, { types: ["deathwatchMarine"], makeDefault: true });

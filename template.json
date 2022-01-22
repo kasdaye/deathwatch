@@ -129,7 +129,8 @@
         "types": [
             "skill",
             "talent",
-            "weapon"
+            "weapon",
+            "gear"
         ],
         "skill": {
             "characteristic": "strength",
@@ -154,6 +155,9 @@
             "clip": "",
             "reload": "",
             "specialRules": ""
+        },
+        "gear": {
+            "description": "<p>Description</p>"
         }
     }
 }
