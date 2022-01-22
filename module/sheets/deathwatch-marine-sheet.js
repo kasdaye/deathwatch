@@ -100,9 +100,9 @@ export default class DeathwatchMarineSheet extends ActorSheet {
         let statisticValue = this.object.data.data.characteristics[governingCharacteristic].value;
 
         if (governingCharacteristic === "weaponSkill") {
-            this.showMeleeAttackDialog(item.name, statisticValue);
+            this.showMeleeAttackDialog(item, statisticValue);
         } else {
-            this.showRangedAttackDialog(item.name, statisticValue);
+            this.showRangedAttackDialog(item, statisticValue);
         }
     }
 
@@ -138,12 +138,12 @@ export default class DeathwatchMarineSheet extends ActorSheet {
         }).render(true);
     }
 
-    async showMeleeAttackDialog(weaponName, statisticValue) {
+    async showMeleeAttackDialog(item, statisticValue) {
         let confirmed = false;
         let actionName = "Standard Attack";
         let modifier = 0;
         new Dialog({
-            title: "Attack with " + weaponName,
+            title: "Attack with " + item.name,
             content: this.getTestDifficultyHtml(),
             buttons: {
                 standardAttack: {
@@ -203,7 +203,7 @@ export default class DeathwatchMarineSheet extends ActorSheet {
                     var roll = await new Roll("1d100", {}).roll({ async: true });
                     let testDifficulty = parseInt(html.find('[name=test-difficulty]')[0].value);
                     roll.toMessage({
-                        flavor: this.createAttackRollFlavourString(roll.result, statisticValue + modifier, testDifficulty, actionName, weaponName),
+                        flavor: this.createAttackRollFlavourString(roll.result, statisticValue + modifier, testDifficulty, actionName, item),
                         user: game.user.id,
                         speaker: { actor: this.object.data._id, alias: this.object.data.name }
                     });
@@ -212,12 +212,12 @@ export default class DeathwatchMarineSheet extends ActorSheet {
         }).render(true);
     }
 
-    async showRangedAttackDialog(weaponName, statisticValue) {
+    async showRangedAttackDialog(item, statisticValue) {
         let confirmed = false;
         let actionName = "Standard Attack";
         let modifier = 0;
         new Dialog({
-            title: "Attack with " + weaponName,
+            title: "Attack with " + item.name,
             content: this.getTestDifficultyHtml(),
             buttons: {
                 standardAttack: {
@@ -267,7 +267,7 @@ export default class DeathwatchMarineSheet extends ActorSheet {
                     var roll = await new Roll("1d100", {}).roll({ async: true });
                     let testDifficulty = parseInt(html.find('[name=test-difficulty]')[0].value);
                     roll.toMessage({
-                        flavor: this.createAttackRollFlavourString(roll.result, statisticValue + modifier, testDifficulty, actionName, weaponName),
+                        flavor: this.createAttackRollFlavourString(roll.result, statisticValue + modifier, testDifficulty, actionName, item),
                         user: game.user.id,
                         speaker: { actor: this.object.data._id, alias: this.object.data.name }
                     });
@@ -320,22 +320,24 @@ export default class DeathwatchMarineSheet extends ActorSheet {
         return result + " on a " + difficultyDescription + " " + actionName + " Test by " + degrees;
     }
 
-    createAttackRollFlavourString(rollResult, statisticValue, testDifficulty, actionName, weaponName) {
+    createAttackRollFlavourString(rollResult, statisticValue, testDifficulty, actionName, item) {
         let finalTargetNumber = statisticValue + testDifficulty;
         let difficultyDescription = this.getDifficultyDescription(testDifficulty);
 
         if (rollResult > finalTargetNumber) {
             let degrees = parseInt((rollResult - finalTargetNumber) / 10).toString();
-            return this.composeMissedAttackRollFlavourString(difficultyDescription, actionName, degrees, weaponName);
+            return this.composeMissedAttackRollFlavourString(difficultyDescription, actionName, degrees, item.name);
         } else {
             let degrees = parseInt((finalTargetNumber - rollResult) / 10).toString();
             let hitLocation = this.getHitLocation(rollResult);
             if (actionName === "Full Auto Burst" && degrees >= 1) {
-                hitLocation = this.addMultipleHitLocations(hitLocation, degrees);
+                let extraHits = Math.min(item.data.data.fullAutoBurst - 1, degrees);
+                hitLocation = this.addMultipleHitLocations(hitLocation, extraHits);
             } else if (actionName === "Semi Auto Burst" && degrees >= 2) {
-                hitLocation = this.addMultipleHitLocations(hitLocation, parseInt(degrees / 2));
+                let extraHits = Math.min(item.data.data.semiAutomaticRateOfFire - 1, parseInt(degrees / 2));
+                hitLocation = this.addMultipleHitLocations(hitLocation, extraHits);
             }
-            return this.composeHitAttackRollFlavourString(difficultyDescription, actionName, degrees, weaponName, hitLocation);
+            return this.composeHitAttackRollFlavourString(difficultyDescription, actionName, degrees, item.name, hitLocation);
         }
     }
 
