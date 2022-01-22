@@ -330,6 +330,11 @@ export default class DeathwatchMarineSheet extends ActorSheet {
         } else {
             let degrees = parseInt((finalTargetNumber - rollResult) / 10).toString();
             let hitLocation = this.getHitLocation(rollResult);
+            if (actionName === "Full Auto Burst" && degrees >= 1) {
+                hitLocation = this.addMultipleHitLocations(hitLocation, degrees);
+            } else if (actionName === "Semi Auto Burst" && degrees >= 2) {
+                hitLocation = this.addMultipleHitLocations(hitLocation, parseInt(degrees / 2));
+            }
             return this.composeHitAttackRollFlavourString(difficultyDescription, actionName, degrees, weaponName, hitLocation);
         }
     }
@@ -383,5 +388,40 @@ export default class DeathwatchMarineSheet extends ActorSheet {
         } else {
             return "Unknown";
         }
+    }
+
+    addMultipleHitLocations(hitLocation, extraHits) {
+        let headExtraHitLocations = ["Head", "Right Arm", "Body", "Left Arm", "Body"];
+        let rightArmExtraHitLocations = ["Right Arm", "Body", "Head", "Body", "Right Arm"];
+        let leftArmExtraHitLocations = ["Left Arm", "Body", "Head", "Body", "Left Arm"];
+        let bodyExtraHitLocations = ["Body", "Left Arm", "Head", "Right Arm", "Body"];
+        let rightLegExtraHitLocations = ["Right Leg", "Body", "Right Arm", "Head", "Body"];
+        let leftLegExtraHitLocations = ["Left Leg", "Body", "Left Arm", "Head", "Body"];
+
+        let extraHitLocationArray;
+        if (hitLocation === "Head") {
+            extraHitLocationArray = headExtraHitLocations;
+        } else if (hitLocation === "Right Arm") {
+            extraHitLocationArray = rightArmExtraHitLocations;
+        } else if (hitLocation === "Left Arm") {
+            extraHitLocationArray = leftArmExtraHitLocations;
+        } else if (hitLocation === "Body") {
+            extraHitLocationArray = bodyExtraHitLocations;
+        } else if (hitLocation === "Right Leg") {
+            extraHitLocationArray = rightLegExtraHitLocations;
+        } else if (hitLocation === "Left Leg") {
+            extraHitLocationArray = leftLegExtraHitLocations;
+        }
+
+        let extraHitLocations = "";
+        for (let i = 0; i < extraHits; i++) {
+            let joiner = ", ";
+            if (i === extraHits - 1) {
+                joiner = ", and ";
+            }
+            extraHitLocations += joiner + extraHitLocationArray[i];
+        }
+        hitLocation += extraHitLocations;
+        return hitLocation;
     }
 }
