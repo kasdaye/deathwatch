@@ -427,7 +427,11 @@ export default class DeathwatchMarineSheet extends ActorSheet {
             if (i === extraHits - 1) {
                 joiner = ", and ";
             }
-            extraHitLocations += joiner + extraHitLocationArray[i];
+            if (i < 5) {
+                extraHitLocations += joiner + extraHitLocationArray[i];
+            } else {
+                extraHitLocations += joiner + extraHitLocationArray[4];
+            }   
         }
         hitLocation += extraHitLocations;
         return hitLocation;
