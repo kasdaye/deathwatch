@@ -447,9 +447,15 @@ export default class HordeSheet extends ActorSheet {
     }
 
     async rollDamage(actor, item, hits) {
+        console.log(actor);
+        let extraDamageDiceFromMagnitude = Math.min(2, parseInt(actor.data.data.injury.magnitude.value / 10))
+        let extraDamageString = "";
+        if (extraDamageDiceFromMagnitude > 0) {
+            extraDamageString = " + " + extraDamageDiceFromMagnitude + "d10";
+        }
         for (let i = 1; i <= hits; i++) {
             setTimeout(async function () {
-                let roll = await new Roll(item.data.data.damage, {}).roll({ async: true });
+                let roll = await new Roll(item.data.data.damage + extraDamageString, {}).roll({ async: true });
                 roll.toMessage({
                     flavor: roll._total.toString() + " " + item.data.data.type + " damage.",
                     user: game.user.id,
