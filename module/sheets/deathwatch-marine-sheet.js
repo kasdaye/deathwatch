@@ -336,13 +336,15 @@ export default class DeathwatchMarineSheet extends ActorSheet {
         } else {
             let degrees = parseInt((finalTargetNumber - rollResult) / 10).toString();
             let hitLocation = this.getHitLocation(rollResult);
+            let extraHits = 0;
             if (actionName === "Full Auto Burst" && degrees >= 1) {
-                let extraHits = Math.min(item.data.data.fullAutomaticRateOfFire - 1, degrees);
+                extraHits = Math.min(item.data.data.fullAutomaticRateOfFire - 1, degrees);
                 hitLocation = this.addMultipleHitLocations(hitLocation, extraHits);
             } else if (actionName === "Semi Auto Burst" && degrees >= 2) {
-                let extraHits = Math.min(item.data.data.semiAutomaticRateOfFire - 1, parseInt(degrees / 2));
+                extraHits = Math.min(item.data.data.semiAutomaticRateOfFire - 1, parseInt(degrees / 2));
                 hitLocation = this.addMultipleHitLocations(hitLocation, extraHits);
             }
+            this.rollDamage(this.object, item, 1 + extraHits);
             return this.composeHitAttackRollFlavourString(difficultyDescription, actionName, degrees, item.name, hitLocation);
         }
     }
@@ -431,9 +433,22 @@ export default class DeathwatchMarineSheet extends ActorSheet {
                 extraHitLocations += joiner + extraHitLocationArray[i];
             } else {
                 extraHitLocations += joiner + extraHitLocationArray[4];
-            }   
+            }
         }
         hitLocation += extraHitLocations;
         return hitLocation;
+    }
+
+    async rollDamage(actor, item, hits) {
+        for (let i = 1; i <= hits; i++) {
+            setTimeout(async function () {
+                let roll = await new Roll(item.data.data.damage, {}).roll({ async: true });
+                roll.toMessage({
+                    flavor: roll._total.toString() + " " + item.data.data.type + " damage.",
+                    user: game.user.id,
+                    speaker: { actor: actor.data._id, alias: actor.data.name }
+                });
+            }, i * 1000);
+        }
     }
 }
