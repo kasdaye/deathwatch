@@ -5,6 +5,7 @@ import TalentSheet from "./module/sheets/talent-sheet.js";
 import WeaponSheet from "./module/sheets/weapon-sheet.js";
 import GearSheet from "./module/sheets/gear-sheet.js";
 import DeathwatchMarineSheet from "./module/sheets/deathwatch-marine-sheet.js";
+import HordeSheet from "./module/sheets/horde-sheet.js";
 
 Hooks.once("init", function () {
     console.log("deathwatch | Initializing Deathwatch System");
@@ -20,6 +21,7 @@ Hooks.once("init", function () {
 
     Actors.unregisterSheet("core", ActorSheet);
     Actors.registerSheet("deathwatch", DeathwatchMarineSheet, { types: ["deathwatchMarine"], makeDefault: true });
+    Actors.registerSheet("deathwatch", HordeSheet, { types: ["horde"], makeDefault: true });
 
     preloadHandlebarsTemplates();
 
@@ -51,7 +53,11 @@ async function preloadHandlebarsTemplates() {
         "systems/deathwatch/templates/partials/marine-combat-armour.hbs",
         "systems/deathwatch/templates/partials/marine-combat-wounds.hbs",
         "systems/deathwatch/templates/partials/marine-combat-movement.hbs",
-        "systems/deathwatch/templates/partials/marine-gear-editable.hbs"
+        "systems/deathwatch/templates/partials/marine-gear-editable.hbs",
+        "systems/deathwatch/templates/partials/npc-characteristics-bar.hbs",
+        "systems/deathwatch/templates/partials/horde-combat-editable.hbs",
+        "systems/deathwatch/templates/partials/horde-combat-armour.hbs",
+        "systems/deathwatch/templates/partials/horde-combat-magnitude.hbs"
     ];
 
     return loadTemplates(templatePaths);

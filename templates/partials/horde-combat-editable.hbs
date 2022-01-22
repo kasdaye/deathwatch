@@ -1,0 +1,16 @@
+<section>
+    <div class="combat-flex-container">
+        <div class="combat-weapon-container">
+            {{#each items as |item id|}}
+            {{#ifeq item.type "weapon"}}
+            {{> "systems/deathwatch/templates/partials/marine-combat-weapon.hbs" actor=actor item=item}}
+            {{/ifeq}}
+            {{/each}}
+        </div>
+        <div class="combat-stats-container">
+            {{> "systems/deathwatch/templates/partials/horde-combat-armour.hbs" actor=actor}}
+            {{> "systems/deathwatch/templates/partials/horde-combat-magnitude.hbs" actor=actor}}
+            {{> "systems/deathwatch/templates/partials/marine-combat-movement.hbs" actor=actor}}
+        </div>
+    </div>
+</section>
