@@ -2,7 +2,8 @@
     "Actor": {
         "types": [
             "deathwatchMarine",
-            "horde"
+            "horde",
+            "npc"
         ],
         "templates": {
             "characteristics": {
@@ -148,6 +149,14 @@
                     "max": 0
                 }
             }
+        },
+        "npc": {
+            "templates": [
+                "characteristics",
+                "movement",
+                "armour",
+                "injury"
+            ]
         }
     },
     "Item": {

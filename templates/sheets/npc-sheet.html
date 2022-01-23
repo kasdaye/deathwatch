@@ -1,0 +1,100 @@
+<form class="actor-sheet {{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+        <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="64" width="64" />
+        <h1 class="charname">
+            <input name="name" type="text" value="{{actor.name}}" placeholder="{{ localize 'Name' }}" />
+        </h1>
+    </header>
+
+    {{> "systems/deathwatch/templates/partials/npc-characteristics-bar.hbs" actor=actor config=config}}
+
+    <div class="outer-content">
+        <nav class="tabs">
+            <a class="item" data-tab="skills">Skills</a>
+            <a class="item" data-tab="talents">Talents & Traits</a>
+            <a class="item active" data-tab="combat">Combat</a>
+            <a class="item" data-tab="gear">Gear</a>
+        </nav>
+
+        <div class="content">
+            <div class="tab" data-tab="skills">
+                <section>
+                    <table>
+                        <tr class="skill-header-row">
+                            <th class="skill-header-cell">
+                                Skill (Characteristic)
+                            </th>
+                            <th class="skill-header-cell">
+                                Basic
+                            </th>
+                            <th class="skill-header-cell">
+                                Trained
+                            </th>
+                            <th class="skill-header-cell">
+                                +10%
+                            </th>
+                            <th class="skill-header-cell">
+                                +20%
+                            </th>
+                            <th>
+
+                            </th>
+                        </tr>
+                        {{#each items as |item id|}}
+                        {{#ifeq item.type "skill"}}
+                        {{> "systems/deathwatch/templates/partials/skills-editable.hbs" actor=actor item=item}}
+                        {{/ifeq}}
+                        {{/each}}
+                    </table>
+                </section>
+            </div>
+            <div class="tab" data-tab="talents">
+                <section>
+                    <table>
+                        <tr class="talent-header-row">
+                            <th class="talent-header-cell">
+                                Talent or Trait
+                            </th>
+                            <th class="talent-header-cell">
+                                Benefit
+                            </th>
+                            <th class="talent-header-cell">
+
+                            </th>
+                        </tr>
+                        {{#each items as |item id|}}
+                        {{#ifeq item.type "talent"}}
+                        {{> "systems/deathwatch/templates/partials/talents-editable.hbs" actor=actor item=item}}
+                        {{/ifeq}}
+                        {{/each}}
+                    </table>
+                </section>
+            </div>
+            <div class="tab" data-tab="combat">
+                {{> "systems/deathwatch/templates/partials/npc-combat.hbs" actor=actor items=items}}
+            </div>
+            <div class="tab" data-tab="gear">
+                <section>
+                    <table>
+                        <tr class="gear-header-row">
+                            <th class="gear-header-cell">
+                                Gear
+                            </th>
+                            <th class="gear-header-cell">
+                                <a class="item-control item-add" title="Add Gear" data-type="gear" data-default-name="Gear">
+                                    <i class="fas fa-plus"></i>
+                                    Add Gear
+                                </a>
+                            </th>
+                        </tr>
+                        {{#each items as |item id|}}
+                        {{#ifeq item.type "gear"}}
+                        {{> "systems/deathwatch/templates/partials/gear-editable.hbs" actor=actor item=item}}
+                        {{/ifeq}}
+                        {{/each}}
+                    </table>
+                </section>
+            </div>
+        </div>
+    </div>
+</form>
