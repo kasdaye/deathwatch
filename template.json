@@ -23,19 +23,24 @@
                         "bonus": 3
                     },
                     "agility": {
-                        "value": 30
+                        "value": 30,
+                        "bonus": 3
                     },
                     "intelligence": {
-                        "value": 30
+                        "value": 30,
+                        "bonus": 3
                     },
                     "perception": {
-                        "value": 30
+                        "value": 30,
+                        "bonus": 3
                     },
                     "willpower": {
-                        "value": 30
+                        "value": 30,
+                        "bonus": 3
                     },
                     "fellowship": {
-                        "value": 30
+                        "value": 30,
+                        "bonus": 3
                     }
                 }
             },
