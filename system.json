@@ -2,7 +2,7 @@
     "name": "deathwatch",
     "title": "Deathwatch",
     "description": "A FoundryVTT implementation of the Deathwatch RPG from FFG.",
-    "version": "0.0.23",
+    "version": "0.1.0",
     "author": "Max Stirner",
     "scripts": [],
     "esmodules": [
